@@ -17,8 +17,9 @@ namespace ZetCmd
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
-            System.Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
+            if (args == null) throw new ArgumentNullException("args");
+            Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
+            Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             Console.ReadKey();
 
         }

@@ -8,7 +8,7 @@ DiffFile+IntersctionFile => FileB
 ## Why?
 This is when you want a quick way to do set operations on textfiles and you do not have access to a database. Or you want to clean data quickly before you import it to a database. This idea of a program came from when we had two 10 GB files csv text files that were two databasedumps a few days apart. The legacy system should import data only wanted the difference. This sort of program crushed the data in five minutes consuming lots of ram memory meanwhile but everyone was happy. 
 ## Example
-Make an intersection between file a and b the key are in column 4,6,7 seperator in the csv files a and  are semicolon (;) make it verbose.
+Make an intersection between file a and b the key are in column 4,6,7 seperator in the csv files a and b are semicolon (;) make it verbose.
 > zetcmd -v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;
 
 ##Roadmap

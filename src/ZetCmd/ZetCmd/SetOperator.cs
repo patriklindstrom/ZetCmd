@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ZetCmd
 {
@@ -15,10 +14,10 @@ namespace ZetCmd
         public DataChunk BChunk { get; set; }
         public DictCompareOnKeyOnly KeyOnly { get; set; }
         public Options Opt { get; set; }
-
         protected Func
                 <Dictionary<string, string>, Dictionary<string, string>, DictCompareOnKeyOnly,
-                    Dictionary<string, string>> SetOperatorFunc;
+                    Dictionary<string, string>> SetOperatorFunc { get; set; }
+
         protected SetOperator(DataChunk b,DataChunk a,DictCompareOnKeyOnly keyOnly,Options options)
         {
             BChunk = b;
@@ -26,7 +25,6 @@ namespace ZetCmd
             KeyOnly = keyOnly;
             Opt = options;
         }
-
 
         public virtual Dictionary<string, string> Operate()
         { 
@@ -48,11 +46,7 @@ namespace ZetCmd
     {       
         public DiffB(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options) : base(b, a, keyOnly, options)
         {
-            BChunk = b;
-            AChunk = a;
-            KeyOnly = keyOnly;
-            Opt = options;
-            //Here comes the magic simple Except and Intersect and force it back to Dictionary.
+            //Here comes the magic simple Except and Intersect and force it back to Dictionary all in Lambda Link style using built in Dot Net set operations for the collections.
             SetOperatorFunc =  (aDict, bDict, k) => bDict.Except(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
         }
     }

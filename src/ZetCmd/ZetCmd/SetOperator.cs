@@ -38,6 +38,7 @@ namespace ZetCmd
 
     public class DiffB : SetOperator
     {
+         
         public DiffB(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options) : base(b, a, keyOnly, options)
         {
             BChunk = b;
@@ -47,11 +48,12 @@ namespace ZetCmd
         }
 
 
-        public   Dictionary<string, string> Operate()
-        {
+        public override Dictionary<string, string> Operate()
+        {            // ReturnDictionary = BChunk.LineDictionary.Except(AChunk.LineDictionary, KeyOnly).ToDictionary(ld => ld.Key, ld => ld.Value);
             //Here comes the magic simple Except and Intersect and force it back to Dictionary.
             var setDiffSw = Stopwatch.StartNew();
-             ReturnDictionary = BChunk.LineDictionary.Except(AChunk.LineDictionary, KeyOnly).ToDictionary(ld => ld.Key, ld => ld.Value);
+            Func<Dictionary<string, string>, Dictionary<string, string>, DictCompareOnKeyOnly, Dictionary<string, string>> setop = (aDict, bDict, k) => bDict.Except(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
+            ReturnDictionary = setop(AChunk.LineDictionary, BChunk.LineDictionary, KeyOnly);
              if (Opt.Verbose)
              {
                  Console.ForegroundColor = ConsoleColor.Red;

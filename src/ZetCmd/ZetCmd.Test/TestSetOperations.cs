@@ -59,7 +59,7 @@ namespace ZetCmd.Test
             };
             var sut = new DiffB(a:mockChunckA,b:mockChunkB,keyOnly:keyOnly,options:opt);
             //Act
-            var sutLineDict = sut.Operate();
+            var sutLineDict = sut.ReturnDictionary;
             //Assert
            Assert.AreEqual(expectedDict.Except(sutLineDict).Count(),
              sutLineDict.Except(expectedDict).Count());

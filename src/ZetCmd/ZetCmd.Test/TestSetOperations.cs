@@ -35,16 +35,16 @@ namespace ZetCmd.Test
             var keyOnly = new DictCompareOnKeyOnly();
             Dictionary<string, string> mockSetA = new Dictionary<string, string>
             {
-                {"fum;fan;foo", Mv.Line},
-                {"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3}
+                {Mv.Key123Line, Mv.Line},
+                {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3}
             };
             Dictionary<string, string> mockSetB = new Dictionary<string, string>
             {
-                {"fum;fan;foo", Mv.Line},
-                {"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3},
-                {"NewFi;foo;fum", Mv.Line4}
+                {Mv.Key123Line, Mv.Line},
+                {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3},
+                {Mv.Key123Line4, Mv.Line4}
             };
             
 

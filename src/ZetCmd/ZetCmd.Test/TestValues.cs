@@ -12,9 +12,13 @@ namespace ZetCmd.Test
     public static class Mv
     {
         public static string Line = "fum;fan;foo;bar;king;barter;28;496;8128;;;endisnear;really?";
+        public static string Key123Line = "fum;fan;foo";
         public static string Line2 = "fum;fan;fee;bar;king;stop;28;496;8128;;True;endisnear;really?";
+        public static string Key123Line2 = "fum;fan;fee";
         public static string Line3 = "456;fan;faa;bar;king;barter;28;496;8128;fist;;endi!snear;rally";
+        public static string Key123Line3 = "456;fan;faa";
         public static string Line4 = "NewFi;foo;fum;bar;king;barter;28;496;8128;fist;;endi!snear;rally";
+        public static string Key123Line4 = "NewFi;foo;fum";
         public static string cSsepLine = "fum,fan,foo,bar,king,barter,28,49;6,8128,,,endisnear,Wally";
         public static string cSsepLine2 = "fum,fan,fee,bar,king,stop,28,496,8128,,True,endisnear,really?";
         public static string cSsepLine3 = "fum,fan,fee,bar,king,stop,28,496,25964951,,False,endisnear,Sally?";

@@ -9,12 +9,11 @@ using Rhino.Mocks;
 namespace ZetCmd.Test
 {
     [TestFixture]
-    public class TestSetOperations
+    public class TestSetOperationsForDiffB
     {
-        [Test]
-          public void ShouldGenerateSetDifferenceBetweenAandB()
+        private static DiffB ArrangeSutExpectedDict(Dictionary<string, string> mockSetA,
+            Dictionary<string, string> mockSetB)
         {
-            //Arrange
             var opt = new Options
             {
                 FileA = Mv.FileA
@@ -30,13 +29,55 @@ namespace ZetCmd.Test
                 Fieldseparator = Mv.Splitchar
                 ,
                 Keycolumns = Mv.ColKeys
-            }; 
-            
+            };
             var keyOnly = new DictCompareOnKeyOnly();
-            Dictionary<string, string> mockSetA = new Dictionary<string, string>
+            var mockChunckA = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
+            {
+                LineDictionary = mockSetA
+            };
+            var mockChunkB = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
+            {
+                LineDictionary = mockSetB
+            };
+            var sut = new DiffB(a: mockChunckA, b: mockChunkB, keyOnly: keyOnly, options: opt);
+            return sut;
+        }
+        [Test]
+          public void SetBIsOneRowMore()
+        {
+            //Arrange
+           var mockSetA = new Dictionary<string, string>
             {
                 {Mv.Key123Line, Mv.Line},
                 {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3}
+            };
+          var  mockSetB = new Dictionary<string, string>
+            {
+                {Mv.Key123Line, Mv.Line},
+                {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3},
+                {Mv.Key123Line4, Mv.Line4}
+            };
+            var expectedDict = new Dictionary<string, string> { { Mv.Key123Line4, Mv.Line4 } };
+            var sut = ArrangeSutExpectedDict( mockSetA,  mockSetB);
+            //Act
+            var sutLineDict = sut.ReturnDictionary;
+            //Assert
+           Assert.AreEqual(expectedDict.Except(sutLineDict).Count(),
+             sutLineDict.Except(expectedDict).Count());
+        }
+
+       
+
+        [Test]
+        static public void SetBIsOneRowMoreAndAOneRowLess()
+        {
+            //Arrange
+            Dictionary<string, string> mockSetA = new Dictionary<string, string>
+            {
+                {Mv.Key123Line, Mv.Line},
+                //{Mv.Key123Line2, Mv.Line2},
                 {Mv.Key123Line3, Mv.Line3}
             };
             Dictionary<string, string> mockSetB = new Dictionary<string, string>
@@ -46,70 +87,8 @@ namespace ZetCmd.Test
                 {Mv.Key123Line3, Mv.Line3},
                 {Mv.Key123Line4, Mv.Line4}
             };
-            
-
-            var expectedDict = new Dictionary<string, string> { { "NewFi;foo;fum", Mv.Line4 } };
-            var mockChunckA = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
-            {
-                LineDictionary = mockSetA
-            };
-            var mockChunkB = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
-            {
-                LineDictionary = mockSetB
-            };
-            var sut = new DiffB(a:mockChunckA,b:mockChunkB,keyOnly:keyOnly,options:opt);
-            //Act
-            var sutLineDict = sut.ReturnDictionary;
-            //Assert
-           Assert.AreEqual(expectedDict.Except(sutLineDict).Count(),
-             sutLineDict.Except(expectedDict).Count());
-        }
-
-        [Test]
-        static public void ShouldGenerateSetDifferenceBetweenAand2()
-        {
-            //Arrange
-            var opt = new Options
-            {
-                FileA = Mv.FileA
-                ,
-                FileB = Mv.FileB
-                ,
-                DiffB = Mv.DiffB
-                ,
-                IntersectAandB = Mv.IntersectAandB
-                ,
-                Verbose = Mv.Verbose
-                ,
-                Fieldseparator = Mv.Splitchar
-                ,
-                Keycolumns = Mv.ColKeys
-            };
-           
-            var keyOnly = new DictCompareOnKeyOnly();
-            Dictionary<string, string> mockSetA = new Dictionary<string, string>
-            {
-                {"fum;fan;foo", Mv.Line},
-                //{"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3}
-            };
-            Dictionary<string, string> mockSetB = new Dictionary<string, string>
-            {
-                {"fum;fan;foo", Mv.Line},
-                {"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3},
-                {"NewFi;foo;fum", Mv.Line4}
-            };
-            var expectedDict = new Dictionary<string, string> { { "NewFi;foo;fum", Mv.Line4 }, { "fum;fan;fee", Mv.Line2 } };
-            var mockChunckA = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
-            {
-                LineDictionary = mockSetA
-            };
-            var mockChunkB = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt)
-            {
-                LineDictionary = mockSetB
-            };
-            var sut = new DiffB(a: mockChunckA, b: mockChunkB, keyOnly: keyOnly, options: opt);
+            var expectedDict = new Dictionary<string, string> { { Mv.Key123Line4, Mv.Line4 }, { Mv.Key123Line2, Mv.Line2 } };
+            var sut = ArrangeSutExpectedDict(mockSetA, mockSetB);           
             //Act
             var sutLineDict = sut.ReturnDictionary;
             //Assert
@@ -117,46 +96,24 @@ namespace ZetCmd.Test
               sutLineDict.Except(expectedDict).Count());
         }
         [Test]
-        static public void ShouldGenerateSetDifferenceBetweenAandB3()
+        static public void SetBIsOnLessAndAIsOneRowLess()
         {
-            //Arrange
-            var opt = new Options
-            {
-                FileA = Mv.FileA
-                ,
-                FileB = Mv.FileB
-                ,
-                DiffB = Mv.DiffB
-                ,
-                IntersectAandB = Mv.IntersectAandB
-                ,
-                Verbose = Mv.Verbose
-                ,
-                Fieldseparator = Mv.Splitchar
-                ,
-                Keycolumns = Mv.ColKeys
-            };
-            
-            var keyOnly = new DictCompareOnKeyOnly();
+            //Arrange           
             Dictionary<string, string> mockSetA = new Dictionary<string, string>
             {
-                {"fum;fan;foo", Mv.Line},
-                //{"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3}
+                {Mv.Key123Line, Mv.Line},
+               // {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3}
             };
             Dictionary<string, string> mockSetB = new Dictionary<string, string>
             {
                // {"fum;fan;foo", Mv.Line},
-                {"fum;fan;fee", Mv.Line2},
-                {"456;fan;faa", Mv.Line3},
-                {"NewFi;foo;fum", Mv.Line4}
+                {Mv.Key123Line2, Mv.Line2},
+                {Mv.Key123Line3, Mv.Line3},
+                {Mv.Key123Line4, Mv.Line4}
             };
-            var expectedDict = new Dictionary<string, string> { { "NewFi;foo;fum", Mv.Line4 }, { "fum;fan;fee", Mv.Line2 } };
-            var mockChunckA = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt);
-            mockChunckA.LineDictionary = mockSetA;
-            var mockChunkB = new DataChunk(dataPath: Mv.DataPath, name: Mv.Name, option: opt);
-            mockChunkB.LineDictionary = mockSetB;
-            var sut = new DiffB(a: mockChunckA, b: mockChunkB, keyOnly: keyOnly, options: opt);
+            var expectedDict = new Dictionary<string, string> { { Mv.Key123Line4, Mv.Line4 }, { Mv.Key123Line2, Mv.Line2 } };
+            var sut = ArrangeSutExpectedDict(mockSetA, mockSetB);  
             //Act
             var sutLineDict = sut.ReturnDictionary;
             //Assert

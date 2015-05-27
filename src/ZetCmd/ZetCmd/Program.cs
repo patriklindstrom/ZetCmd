@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using CommandLine;
 
 
 namespace ZetCmd
@@ -21,6 +26,40 @@ namespace ZetCmd
             Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             Console.ReadKey();
+             var options = new Options();
+            if (Parser.Default.ParseArguments(args, options))
+            {
+                var programStopwatch = Stopwatch.StartNew();
+                var chunkList = new List<DataChunk>
+                {
+                    new DataChunk(dataPath:options.FileA,name:"A", option:options),
+                    new DataChunk(dataPath:options.FileB,name:"B", option:options)
+                };
+                //Multithread the reading of files and making dictionary of all lines in file
+                Parallel.ForEach(chunkList, dl => dl.GetDataContent(new FileLineReader(dl.DataPath)));
+                //Give the sets nicer names
+                var a = chunkList.First(f => f.Name == "A");
+                var b = chunkList.First(f => f.Name == "B"); 
+                //We need Compare to use set logic on keys only not Key and Value which is the default - odd that is the default and we have to override it.
+                var keyOnly = new DictCompareOnKeyOnly();
+                var setOp = new DiffB(a:a,b:b,keyOnly:keyOnly,options:options);
+                //Here we save the output as text files and do magic in the DiffDB function
+                var outPutList = new List<OutputObj>
+                {
+                    new OutputObj(name:"DiffB",dict: setOp.ReturnDictionary,opt: options),
+                };
+                //Multithread the output of files
+                Parallel.ForEach(outPutList, oL => oL.Output());
+                programStopwatch.Stop();
+                if (options.Verbose)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Done ! hit any key to exit program. ExecutionTime was {0} ms",
+                        programStopwatch.Elapsed.Milliseconds);
+                    Console.ReadLine();
+                }
+            }
+        }
 
         }
     }

@@ -56,7 +56,9 @@ namespace ZetCmd
 
         string GetUsage();
     }
-
+    /// <summary>
+    /// The CommandLine parser is based on https://github.com/cosmo0/commandline which is a fork from https://github.com/gsscoder/commandline
+    /// </summary>
     public class Options : IOptions
     {
         // Good test parameters for deafult meaning: verbose fileA and fileB key is in combination of column [4,6,7] - where first column is called 1. Separator char is semikolon 
@@ -70,10 +72,9 @@ namespace ZetCmd
 
         [Option('d', "DiffB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
         public bool DiffB { get; set; }
-
         [Option('i', "IntersectAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
         public bool IntersectAandB { get; set; }
-        //[OptionArray('k', "keycolumns", Required = false, DefaultValue = new int[] { 4, 6, 7 }, HelpText = "What columns combined are the key of every row.")]
+        [OptionArray('k', "keycolumns", Required = false, DefaultValue = new int[] { 4, 6, 7 }, HelpText = "What columns combined are the key of every row.")]
         public int[] Keycolumns { get; set; }
         [Option('v', null, Required = false, HelpText = "Print details during execution.")]
         public bool Verbose { get; set; }

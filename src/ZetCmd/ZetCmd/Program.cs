@@ -4,12 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandLine;
+using CommandLine.Text; // if you want text formatting helpers (recommended)
 
 
 namespace ZetCmd
 {
     // params used while running -v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;
-
+    
     /// <summary>
     /// We want the following set operations: 
     /// not A and B => DiffFile  (see http://www.wolframalpha.com/input/?i=not+A+and+B ) (Venn diagram http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427e41kvo33uui)
@@ -26,12 +27,14 @@ namespace ZetCmd
             Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             Console.ReadKey();
-             var options = new Options();
+
+           var options =  new Options();
+           
             if (Parser.Default.ParseArguments(args, options))
-            {
+             {
                 var programStopwatch = Stopwatch.StartNew();
                 var chunkList = new List<DataChunk>
-                {
+                { // TODO: kolla hur nya result Value fungerar mot tidigare options CommandLine 2.0 skit
                     new DataChunk(dataPath:options.FileA,name:"A", option:options),
                     new DataChunk(dataPath:options.FileB,name:"B", option:options)
                 };
@@ -62,5 +65,5 @@ namespace ZetCmd
         }
 
         }
-    }
+    
 }

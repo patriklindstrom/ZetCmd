@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandLine;
+using CommandLine.Text; // if you want text formatting helpers (recommended)
 
 
 namespace ZetCmd
@@ -26,9 +27,10 @@ namespace ZetCmd
             Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             Console.ReadKey();
-             var options = new Options();
-            if (Parser.Default.ParseArguments(args, options))
-            {
+
+            var options = new Options();
+             if (Parser.Default.ParseArguments(args, options))
+             {
                 var programStopwatch = Stopwatch.StartNew();
                 var chunkList = new List<DataChunk>
                 {
@@ -62,5 +64,5 @@ namespace ZetCmd
         }
 
         }
-    }
+    
 }

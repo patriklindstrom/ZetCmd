@@ -28,7 +28,7 @@ namespace ZetCmd
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             Console.ReadKey();
 
-            var options = new Options();
+           var options =  new Options();
              if (Parser.Default.ParseArguments(args, options))
              {
                 var programStopwatch = Stopwatch.StartNew();

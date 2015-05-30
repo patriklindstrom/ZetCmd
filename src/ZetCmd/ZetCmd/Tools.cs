@@ -57,7 +57,7 @@ namespace ZetCmd
         string GetUsage();
     }
 
-    public class Options
+    public class Options : IOptions
     {
         // Good test parameters for deafult meaning: verbose fileA and fileB key is in combination of column [4,6,7] - where first column is called 1. Separator char is semikolon 
         //-v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;

@@ -29,8 +29,10 @@ namespace ZetCmd
             Console.ReadKey();
 
            var options =  new Options();
+
            
             if (Parser.Default.ParseArguments(args, options))
+
              {
                 var programStopwatch = Stopwatch.StartNew();
                 var chunkList = new List<DataChunk>

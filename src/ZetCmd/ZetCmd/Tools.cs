@@ -74,6 +74,8 @@ namespace ZetCmd
         public bool DiffB { get; set; }
         [Option('i', "IntersectAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
         public bool IntersectAandB { get; set; }
+        [Option('u', "UnionAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
+        public bool UnionAandB { get; set; }
         [OptionArray('k', "keycolumns", Required = false, DefaultValue = new int[] { 4, 6, 7 }, HelpText = "What columns combined are the key of every row.")]
         public int[] Keycolumns { get; set; }
         [Option('v', null, Required = false, HelpText = "Print details during execution.")]

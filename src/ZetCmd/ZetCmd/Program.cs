@@ -45,9 +45,19 @@ namespace ZetCmd
                 //Give the sets nicer names
                 var a = chunkList.First(f => f.Name == "A");
                 var b = chunkList.First(f => f.Name == "B"); 
-                //We need Compare to use set logic on keys only not Key and Value which is the default - odd that is the default and we have to override it.
+                //We need Compare to use set logic on keys only not Key and Value which is the default - odd that is the default and we have to override it.               
                 var keyOnly = new DictCompareOnKeyOnly();
-                var setOp = new DiffB(a:a,b:b,keyOnly:keyOnly,options:options);
+                // TODO: We should use Parallell foreach here as well. list of operaiton that should
+                // be able to do botch union and intersection at same time. 
+                // Should we be able to do diffAB  and diffBA at same time?
+                 if (options.IntersectAandB)
+                 {
+                     var setOp = new DiffB(a: a, b: b, keyOnly: keyOnly, options: options);
+                 } 
+                if (options.UnionAandB)
+                 {
+                     var setOp = new UnionAB(a: a, b: b, keyOnly: keyOnly, options: options);
+                 }
                 //Here we save the output as text files and do magic in the DiffDB function
                 var outPutList = new List<OutputObj>
                 {

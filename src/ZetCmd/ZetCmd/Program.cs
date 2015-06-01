@@ -50,17 +50,20 @@ namespace ZetCmd
                 // TODO: We should use Parallell foreach here as well. list of operaiton that should
                 // be able to do botch union and intersection at same time. 
                 // Should we be able to do diffAB  and diffBA at same time?
+                List<SetOperator> setOperatorsList = new List<SetOperator>();
                  if (options.IntersectAandB)
                  {
-                     var setOp = new DiffB(a: a, b: b, keyOnly: keyOnly, options: options);
+                     setOperatorsList.Add( new DiffB(a: a, b: b, keyOnly: keyOnly, options: options));
                  } 
                 if (options.UnionAandB)
                  {
-                     var setOp = new UnionAB(a: a, b: b, keyOnly: keyOnly, options: options);
+                     setOperatorsList.Add(  new UnionAB(a: a, b: b, keyOnly: keyOnly, options: options));
                  }
                 //Here we save the output as text files and do magic in the DiffDB function
                 var outPutList = new List<OutputObj>
                 {
+                    // ToDo: Here is Head 
+                     Parallel.ForEach(outPutList, oL => oL.Output());
                     new OutputObj(name:"DiffB",dict: setOp.ReturnDictionary,opt: options),
                 };
                 //Multithread the output of files

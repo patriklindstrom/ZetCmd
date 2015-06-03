@@ -67,6 +67,17 @@ namespace ZetCmd
             Name = "DiffB";
         }
     }
+    public class DiffA : SetOperator
+    {
+        public DiffA(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options)
+            : base(b, a, keyOnly, options)
+        {
+            // Here comes the magic simple Except and Intersect and force it back to Dictionary
+            // all in Lambda Link style using built in Dot Net set operations for the collections.
+            SetOperatorFunc = (aDict, bDict, k) => aDict.Except(bDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
+            Name = "DiffA";
+        }
+    }
     public class UnionAB : SetOperator
     {
         public UnionAB(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options)

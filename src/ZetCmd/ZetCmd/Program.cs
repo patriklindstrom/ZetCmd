@@ -51,9 +51,13 @@ namespace ZetCmd
                 // be able to do botch union and intersection at same time. 
                 // Should we be able to do diffAB  and diffBA at same time?
                 List<SetOperator> setOperatorsList = new List<SetOperator>();
-                 if (options.IntersectAandB)
+                 if (options.DiffB)
                  {
                      setOperatorsList.Add( new DiffB(a: a, b: b, keyOnly: keyOnly, options: options));
+                 }
+                 if (options.DiffA)
+                 {
+                     setOperatorsList.Add(new DiffA(a: a, b: b, keyOnly: keyOnly, options: options));
                  } 
                 if (options.UnionAandB)
                  {

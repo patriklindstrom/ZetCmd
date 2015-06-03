@@ -70,8 +70,10 @@ namespace ZetCmd
         public string FileB { get; set; }
 
 
-        [Option('d', "DiffB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
+        [Option('d', "DiffB", Required = false, HelpText = "Calculate and output Diff B csv file.")]
         public bool DiffB { get; set; }
+        [Option('a', "DiffA", Required = false, HelpText = "Calculate and output Diff A csv file.")]
+        public bool DiffA { get; set; }
         [Option('i', "IntersectAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
         public bool IntersectAandB { get; set; }
         [Option('u', "UnionAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]

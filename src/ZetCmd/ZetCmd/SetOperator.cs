@@ -11,6 +11,8 @@ namespace ZetCmd
     {
         #region Properties for SetOperator class
         private Dictionary<string, string> _returnDictionary;
+        public string Name;
+
         public Dictionary<string, string> ReturnDictionary
         {
             get
@@ -62,6 +64,7 @@ namespace ZetCmd
             // Here comes the magic simple Except and Intersect and force it back to Dictionary
             // all in Lambda Link style using built in Dot Net set operations for the collections.
             SetOperatorFunc =  (aDict, bDict, k) => bDict.Except(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
+            Name = "DiffB";
         }
     }
     public class UnionAB : SetOperator
@@ -72,6 +75,7 @@ namespace ZetCmd
             // Here comes the magic a simple Union and force it back to Dictionary
             // all in Lambda Link style using built in Dot Net set operations for the collections.
             SetOperatorFunc = (aDict, bDict, k) => bDict.Union(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
+            Name = "UnionAB";
         }
     }
 }

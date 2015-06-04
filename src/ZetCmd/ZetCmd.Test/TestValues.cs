@@ -34,5 +34,7 @@ namespace ZetCmd.Test
         public static bool IntersectAandB = true;
         public static bool Verbose;
         public static bool DiffB = true;
+        public static bool DiffA = true;
+        public static bool UnionAB = true;
     }
 }

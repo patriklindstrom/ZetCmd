@@ -63,9 +63,13 @@ namespace ZetCmd
                  {
                      setOperatorsList.Add(  new UnionAB(a: a, b: b, keyOnly: keyOnly, options: options));
                  }
+                if (options.IntersectAandB)
+                {
+                    setOperatorsList.Add(new IntersectAB(a: a, b: b, keyOnly: keyOnly, options: options));
+                }
                 //Here we save the output as text files and do magic in the DiffDB function
                  var outPutList = setOperatorsList.Select(so => new OutputObj(name: so.Name, dict: so.ReturnDictionary, opt: so.Opt)).ToList();
-                 // ToDo: Here is Head 
+
                      Parallel.ForEach(outPutList, oL => oL.Output());                    
                 ;
                 //Multithread the output of files

@@ -26,9 +26,10 @@ namespace ZetCmd
             if (args == null) throw new ArgumentNullException("args");
             Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
+            var options = new Options();
+            Console.WriteLine("Fieldsepator  {0}", options.Fieldseparator);
             Console.ReadKey();
 
-           var options =  new Options();
 
            
             if (Parser.Default.ParseArguments(args, options))

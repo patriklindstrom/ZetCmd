@@ -20,21 +20,21 @@ namespace ZetCmd
     /// </summary>
     /// 
     class Program
-    {
+    { // example of params -v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;
+
         static void Main(string[] args)
         {
             if (args == null) throw new ArgumentNullException("args");
             Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
             Console.WriteLine("Cmd Syntax is Getopt style. Type ? to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             var options = new Options();
-            Console.WriteLine("Fieldsepator  {0}", options.Fieldseparator);
             Console.ReadKey();
-
-
-           
+          
             if (Parser.Default.ParseArguments(args, options))
 
              {
+                 Console.WriteLine("Fieldsepator  {0}", options.Fieldseparator);
+                 Console.ReadKey();
                 var programStopwatch = Stopwatch.StartNew();
                 var chunkList = new List<DataChunk>
                 { // TODO: kolla hur nya result Value fungerar mot tidigare options CommandLine 2.0 skit

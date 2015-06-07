@@ -104,10 +104,10 @@ namespace ZetCmd
             var usage = new StringBuilder();
             usage.AppendLine(
                 String.Format(
-                    "UAFFCompare Application takes Difference between two cvs files on columns 4,6,7 version {0}",
+                    "ZetCmd Application takes Difference between two cvs files on columns 4,6,7 version {0}",
                     Assembly.GetExecutingAssembly().GetName().Version));
             usage.AppendLine("give help as param for help. Simple usage -a[fileA] -b[fileB] ");
-            usage.AppendLine("Developed by Patrik Lindström 2015-02-25");
+            usage.AppendLine("Developed by Patrik Lindström 2015-06-01");
             return usage.ToString();
         }
     }

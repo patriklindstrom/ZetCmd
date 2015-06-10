@@ -72,7 +72,7 @@ namespace ZetCmd
 
         [Option('d', "DiffB", Required = false, HelpText = "Calculate and output Diff B csv file.")]
         public bool DiffB { get; set; }
-        [Option('a', "DiffA", Required = false, HelpText = "Calculate and output Diff A csv file.")]
+        [Option('r', "DiffA", Required = false, HelpText = "Calculate and output Diff A csv file.")]
         public bool DiffA { get; set; }
         [Option('i', "IntersectAandB", Required = false, HelpText = "Calculate and output intersectAandB csv file.")]
         public bool IntersectAandB { get; set; }

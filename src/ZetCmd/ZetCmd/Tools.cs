@@ -96,7 +96,7 @@ namespace ZetCmd
 
         }
 
-       // [HelpOption]
+        [HelpOption]
         public string GetUsage()
         {
             // this without using CommandLine.Text

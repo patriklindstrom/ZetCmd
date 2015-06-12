@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
+using CommandLine.Text;
 
 namespace ZetCmd
 {
@@ -99,16 +100,17 @@ namespace ZetCmd
         [HelpOption]
         public string GetUsage()
         {
-            // this without using CommandLine.Text
-            //  or using HelpText.AutoBuild
-            var usage = new StringBuilder();
-            usage.AppendLine(
-                String.Format(
-                    "ZetCmd Application takes Difference between two cvs files on columns 4,6,7 version {0}",
-                    Assembly.GetExecutingAssembly().GetName().Version));
-            usage.AppendLine("give help as param for help. Simple usage -a[fileA] -b[fileB] ");
-            usage.AppendLine("Developed by Patrik Lindström 2015-06-01");
-            return usage.ToString();
+            var help = new HelpText
+            {
+                Heading = new HeadingInfo("<<app title>>", "<<app version>>"),
+                Copyright = new CopyrightInfo("<<app author>>", 2014),
+                AdditionalNewLineAfterOption = true,
+                AddDashesToOption = true
+            };
+            help.AddPreOptionsLine("<<license details here.>>");
+            help.AddPreOptionsLine("Usage: app -a Someone");
+            help.AddOptions(this);
+            return help;
         }
     }
 

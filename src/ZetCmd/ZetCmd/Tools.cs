@@ -12,6 +12,8 @@ using CommandLine.Text;
 namespace ZetCmd
 {
 
+    
+
     #region Tool classes like extented method and argument parsers
 
     public static class Dictionary
@@ -62,6 +64,7 @@ namespace ZetCmd
     /// </summary>
     public class Options : IOptions
     {
+       
         // Good test parameters for deafult meaning: verbose fileA and fileB key is in combination of column [4,6,7] - where first column is called 1. Separator char is semikolon 
         //-v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;
         [Option('a', "fileA", Required = true, HelpText = "Input A csv file to read.")]
@@ -72,6 +75,7 @@ namespace ZetCmd
 
 
         [Option('d', "DiffB", Required = false, HelpText = "Calculate and output Diff B csv file.")]
+        //  [Option('d', "DiffB", Required = false, HelpText = DIFFBGRAF)]
         public bool DiffB { get; set; }
         [Option('r', "DiffA", Required = false, HelpText = "Calculate and output Diff A csv file.")]
         public bool DiffA { get; set; }
@@ -168,5 +172,37 @@ namespace ZetCmd
     }
 
     #endregion
+
+    public  class GetAsciiArtHelp 
+{
+        public GetAsciiArtHelp()
+        {
+            _diffBAsciiArtHelp = DIFFBGRAF;
+        }
+        private string _diffBAsciiArtHelp;
+
+        #region Helptext Ascii art.
+
+        private const string DIFFBGRAF = "Help DiffB." + "\r\n" +
+                                         "Calculate and output Diff B csv file." + "\r\n" +
+                                         "\r\n" +
+                                         "       -          " + "\r\n" +
+                                         "    / ... \\      " + "\r\n" +
+                                         "   / ....  \\     " + "\r\n" +
+                                         "  / ........\\    " + "\r\n" +
+                                         " | ....A.....|    " + "\r\n" +
+                                         "  \\ ....... /    " + "\r\n" +
+                                         "   \\ ..... /     " + "\r\n" +
+                                         "    \\ ... /      " + "\r\n" + 
+                                         "       --         ";
+
+        #endregion
+
+        public string DiffBAsciiArtHelp
+        {
+            get { return _diffBAsciiArtHelp; }
+            set { _diffBAsciiArtHelp = value; }
+        }
+}
 
 }

@@ -1,6 +1,7 @@
 Copy-Item ".\ZetCmd\bin\Debug\ZetCmd.exe" -Destination ".\OutPutBuild"
 Copy-Item ".\ZetCmd\bin\Debug\CommandLine.dll" -Destination ".\OutPutBuild"
 # http://www.generatedata.com/
+# add ilmerge /target:exe /out:MyApp.exe zetcmd.exe CommandLine.dll
 Copy-Item ".\TestFiles\A_TestFile.csv" -Destination ".\Build"
 Copy-Item ".\TestFiles\B_TestFile.csv" -Destination ".\Build"
 Push-Location

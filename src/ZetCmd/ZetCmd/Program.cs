@@ -28,7 +28,7 @@ namespace ZetCmd
         private static void Main(string[] args)
         {
             if (args == null) throw new ArgumentNullException("args");
-            Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles.");
+            Console.WriteLine("Welcome to ZetCmd a program to perform setbased operation on datafiles with just one exe file.");
             Console.WriteLine(
                 "Cmd Syntax is Getopt style. Run without params to get help. See: http://en.wikipedia.org/wiki/Getopt ");
             var asciArtHelp = new GetAsciiArtHelp();

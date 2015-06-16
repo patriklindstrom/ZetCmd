@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MakeDataChunkTest.cs" />
     <Compile Include="TestSetOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestValues.cs" />

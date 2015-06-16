@@ -24,6 +24,7 @@ namespace ZetCmd
         // example of params -v -a"s:\Darkcompare\UAFF#.140206.TXT"  -b"s:\Darkcompare\UAFF#.140603.TXT" -k4 6 7 -s;
         // example two -v  -a".\A_TestFile.csv"  -b".\B_TestFile.csv" -k1 2 -s;
        // example two  -a?
+        // testcase3 -v  -a".\A_TestFile.csv"  -b".\B_TestFile.csv" -k1 2 -s; -r -d -i
 
         private static void Main(string[] args)
         {

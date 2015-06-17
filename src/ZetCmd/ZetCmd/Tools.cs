@@ -177,7 +177,7 @@ namespace ZetCmd
 {
         public GetAsciiArtHelp()
         {
-            _diffBAsciiArtHelp = DIFFBGRAF;
+            _diffBAsciiArtHelp = DIFFB2_GRAF;
         }
         private string _diffBAsciiArtHelp;
 
@@ -195,8 +195,34 @@ namespace ZetCmd
                                          "   \\ ..... /     " + "\r\n" +
                                          "    \\ ... /      " + "\r\n" + 
                                          "       --         ";
-
+        private const string DIFFB2_GRAF = "Help DiffB." + "\r\n" +
+                                      "Usage: What is new from A to B" + "\r\n" +
+                                      "Calculate and output Diff B csv file. Give param -d " + "\r\n" +
+                                      "\r\n" +
+                                      "     /---\\ ___       " + "\r\n" +
+                                      "    /   / \\ :.\\    " + "\r\n" +
+                                      "   /   /   \\ ::.\\ " + "\r\n" +
+                                      "  /    |    \\:::.\\" + "\r\n" +
+                                      " |  A  |     |::B:.\\ " + "\r\n" +
+                                      "  \\    \\    /::::: |" + "\r\n" +
+                                      "   \\    |  /:::::::/" + "\r\n" +
+                                      "    \\   \\ /.:::::/" + "\r\n" +
+                                      "     \\---\\______/   ";
+                private const string DIFFA_GRAF = "Help DiffB." + "\r\n" +
+                                      "Calculate and output Diff B csv file. Give param -d " + "\r\n" +
+                                      "\r\n" +
+                                      "     /---\\ ___       " + "\r\n" +
+                                      "    /   /.\\ :.\\    " + "\r\n" +
+                                      "   /   /.::\\ ::.\\ " + "\r\n" +
+                                      "  /    |.:::\\:::.\\" + "\r\n" +
+                                      " |  A  |.::::|::B:.\\ " + "\r\n" +
+                                      "  \\    \\.:::/::::: |" + "\r\n" +
+                                      "   \\    |.:/:::::::/" + "\r\n" +
+                                      "    \\   \\./.:::::/" + "\r\n" +
+                                      "     \\---\\______/   ";
         #endregion
+     
+
 
         public string DiffBAsciiArtHelp
         {

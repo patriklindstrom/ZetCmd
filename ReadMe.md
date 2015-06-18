@@ -11,12 +11,15 @@ This is when you want a quick way to do set operations on textfiles and you do n
 ### Simple intersection
 Make an intersection between file a and b the key are in column 4,6,7 seperator in the csv files a and b are semicolon (;) make it verbose.
 > zetcmd -v -a"s:\Darkcompare\A_TestFile.cs"  -b"s:\Darkcompare\B_TestFile.cs" -k4 6 7 -s;
+
 In pseudo SQL it would be something like:
 > SELECT a.* from A_TestFile as a INNER JOIN B_TestFile as b on a.k4=b.k4 and a.k6=b.k6 and a.k7=b.k7
+
 ### Many Setoperation on two sets
 On the two sets A_TestFile and B_TestFile defined by the key on column 1 and 2 where the column separator is semicolon (;)
 make sets that are DiffB and DiffA and the intersection of the two. Describe all in a verbose style.
 >ZetCmd.exe -v  -a".\A_TestFile.csv"  -b".\B_TestFile.csv" -k1 2 -s; -r -d -i
+
 In pseudo SQL it would be something like:
 > SELECT b.* from B_TestFile as b  WHERE b.key_1_2 not in (Select a.key_1_2 from A_TestFile as a)
 > SELECT a.* from A_TestFile as a  WHERE a.key_1_2 not in (Select a.key_1_2 from B_TestFile as b)

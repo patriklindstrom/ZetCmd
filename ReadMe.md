@@ -21,8 +21,13 @@ make sets that are DiffB and DiffA and the intersection of the two. Describe all
 >ZetCmd.exe -v  -a".\A_TestFile.csv"  -b".\B_TestFile.csv" -k1 2 -s; -r -d -i
 
 In pseudo SQL it would be something like:
+DiffB
 > SELECT b.* from B_TestFile as b  WHERE b.key_1_2 not in (Select a.key_1_2 from A_TestFile as a)
+
+DiffA
 > SELECT a.* from A_TestFile as a  WHERE a.key_1_2 not in (Select a.key_1_2 from B_TestFile as b)
+
+Intersection
 > SELECT a.* from A_TestFile as a  INNER JOIN B_TestFile as b ON (a.key_1_2 = b.key_1_2 )
 
 ## How

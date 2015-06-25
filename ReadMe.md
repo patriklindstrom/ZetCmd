@@ -10,7 +10,7 @@ This is when you want a quick way to do set operations on textfiles and you do n
 ## Example
 ### Simple intersection
 Make an intersection between file a and b the key are in column 4,6,7 seperator in the csv files a and b are semicolon (;) make it verbose.
-> zetcmd -v -a"s:\Darkcompare\A_TestFile.cs"  -b"s:\Darkcompare\B_TestFile.cs" -k4 6 7 -s;
+> zetcmd -v -i -a"s:\Darkcompare\A_TestFile.cs"  -b"s:\Darkcompare\B_TestFile.cs" -k4 6 7 -s;
 Shown in Venn Diagram it would be:
 ![Link to Venn Diagagram showing A and B](http://i.imgur.com/lNnPvV2.png)
 In pseudo SQL it would be something like:

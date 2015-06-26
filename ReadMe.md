@@ -6,7 +6,7 @@ A and B => IntersectionFile see [Explanation of expression](http://www.wolframal
  NotaBene combined => (not A and B) or (A and B) see [Explanation of expression](http://www.wolframalpha.com/input/?i=%28not+A+and+B%29+or+%28A+and+B%29 "link to Wolframealpha") or see more easily [Venn diagram](http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427eguh00j5eik "link to graph on Wolframealpha")
 DiffFile+IntersctionFile => FileB
 ## Why?
-This is when you want a quick way to do set operations on textfiles and you do not have access to a database. Or you want to clean data quickly before you import it to a database. This idea of a program came from when we had two 10 GB files csv text files that were two databasedumps a few days apart. The legacy system should import data only wanted the difference. This sort of program crushed the data in five minutes consuming lots of ram memory meanwhile but everyone was happy. 
+This is when you want a quick way to do set operations on textfiles and you do not have access to a database. Or you want to clean data quickly before you import it to a database. This idea of a program came from when we had two 10 GB files csv text files that were two databasedumps a few days apart. The legacy system that should import data only wanted the difference. The data that we wanted was only 10.000 rows out of many millions rows. This program crushed the data in five minutes consuming lots of ram memory meanwhile but everyone was happy. Ths was only run once we did not need to import the data into the database or engage the ETL programmers.
 ## Example
 ### Simple intersection
 Make an intersection between file a and b the key are in column 4,6,7 seperator in the csv files a and b are semicolon (;) make it verbose.

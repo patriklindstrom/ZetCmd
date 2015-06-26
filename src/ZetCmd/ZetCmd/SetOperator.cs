@@ -90,6 +90,7 @@ namespace ZetCmd
         }
     }
 
+
     public class IntersectAB : SetOperator
     {
         public IntersectAB(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options)
@@ -99,6 +100,17 @@ namespace ZetCmd
             // all in Lambda Link style using built in Dot Net set operations for the collections.
             SetOperatorFunc = (aDict, bDict, k) => bDict.Intersect(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
             Name = "IntersectAB";
+        }
+    }
+    public class NotIntersectAB : SetOperator
+    {
+        public NotIntersectAB(DataChunk b, DataChunk a, DictCompareOnKeyOnly keyOnly, Options options)
+            : base(b, a, keyOnly, options)
+        {
+            // Here comes the magic a simple Union and force it back to Dictionary
+            // all in Lambda Link style using built in Dot Net set operations for the collections.
+            SetOperatorFunc = (aDict, bDict, k) => bDict.(aDict, k).ToDictionary(ld => ld.Key, ld => ld.Value);
+            Name = "NotIntersectAB";
         }
     }
 }
